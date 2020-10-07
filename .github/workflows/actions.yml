@@ -48,5 +48,5 @@ jobs:
       - name: Maven Test
         run: |
           echo 'Maven Test'
-          mvn test
+          mvn clean test
           echo 'Jobs done'  
