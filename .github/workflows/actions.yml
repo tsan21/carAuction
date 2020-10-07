@@ -33,12 +33,10 @@ jobs:
           echo 'Cleaning and building'
           mvn clean compile
           echo 'Jobs done'
-  test_job:
-    runs-on: ubuntu-latest
-    steps:
-      - name: Maven Test
+          
+      - name: Maven test
         run: |
-          echo 'Maven Test'
+          echo 'Maven test'
           mvn test
-          echo 'Jobs done'  
+          echo 'Jobs done'
     
