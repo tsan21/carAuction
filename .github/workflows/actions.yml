@@ -33,9 +33,8 @@ jobs:
           echo 'Cleaning and building'
           mvn clean compile
           echo 'Jobs done'
-          
       - name: Maven Test
         run: |
-          echo 'Maven Test'
+          echo 'Maven test'
           mvn test
           echo 'Jobs done'  
