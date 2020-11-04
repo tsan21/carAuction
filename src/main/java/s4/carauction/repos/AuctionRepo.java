@@ -1,4 +1,9 @@
 package s4.carauction.repos;
 
-public interface AuctionRepo {
+import org.springframework.data.jpa.repository.JpaRepository;
+import org.springframework.stereotype.Repository;
+import s4.carauction.entities.Auction;
+
+@Repository
+public interface AuctionRepo extends JpaRepository<Auction, Long> {
 }

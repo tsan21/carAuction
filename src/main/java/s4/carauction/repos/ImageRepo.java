@@ -1,4 +1,9 @@
 package s4.carauction.repos;
 
-public interface ImageRepo {
+import org.springframework.data.jpa.repository.JpaRepository;
+import org.springframework.stereotype.Repository;
+import s4.carauction.entities.Image;
+
+@Repository
+public interface ImageRepo extends JpaRepository<Image, Long> {
 }
