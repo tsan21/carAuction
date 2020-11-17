@@ -1,5 +1,6 @@
 package s4.carauction.entities;
 
+import com.sun.istack.Nullable;
 import lombok.Getter;
 import lombok.Setter;
 

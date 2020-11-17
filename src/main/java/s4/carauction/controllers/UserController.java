@@ -28,8 +28,8 @@ public class UserController {
     }
 
     @PostMapping("/")
-    public ResponseEntity<?> register(UserModel userModel){
-        if (!checkIfUserExists(userModel.getName()) || !userModel.getName().equals("") || !userModel.getPassword().equals("")){
+    public ResponseEntity<?> register(@RequestBody UserModel userModel){
+        if (!userExists(userModel.getName()) || userModel.getName().isEmpty()|| userModel.getPassword().isEmpty()){
             User user = new User(userModel.getName(), userModel.getPassword());
             userRepo.save(user);
             return new ResponseEntity<>(user, HttpStatus.CREATED);
@@ -37,8 +37,12 @@ public class UserController {
         return new ResponseEntity<Error>(HttpStatus.NO_CONTENT);
     }
 
+    @GetMapping("/all")
+    public Iterable<User> all(){
+        return userRepo.findAll();
+    }
 
-    public boolean checkIfUserExists(String userName){
+    public boolean userExists(String userName){
         for (User user : userRepo.findAll()){
             if (user.getName().equals(userName)){
                 return true;
@@ -46,5 +50,4 @@ public class UserController {
         }
         return false;
     }
-
 }
