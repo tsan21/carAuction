@@ -29,12 +29,14 @@ public class UserController {
 
     @PostMapping("/")
     public ResponseEntity<?> register(@RequestBody UserModel userModel){
-        if (!userExists(userModel.getName()) || userModel.getName().isEmpty()|| userModel.getPassword().isEmpty()){
+        if (!userExists(userModel.getName()) && !userModel.getName().equals("") && !userModel.getPassword().equals("")){
             User user = new User(userModel.getName(), userModel.getPassword());
             userRepo.save(user);
             return new ResponseEntity<>(user, HttpStatus.CREATED);
         }
-        return new ResponseEntity<Error>(HttpStatus.NO_CONTENT);
+        else{
+            return new ResponseEntity<Error>(HttpStatus.ALREADY_REPORTED);
+        }
     }
 
     @GetMapping("/all")
