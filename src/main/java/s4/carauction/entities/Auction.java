@@ -4,6 +4,7 @@ import lombok.Getter;
 import lombok.Setter;
 
 import javax.persistence.*;
+import java.awt.*;
 import java.util.Date;
 import java.util.List;
 
@@ -42,6 +43,16 @@ public class Auction {
         this.images = images;
         this.car = car;
         this.bidders = bidders;
+        this.user = user;
+    }
+
+    public Auction(String seller, String description, Date startDate, Date endDate, List<Image> images, Car car, User user) {
+        this.seller = seller;
+        this.description = description;
+        this.startDate = startDate;
+        this.endDate = endDate;
+        this.images = images;
+        this.car = car;
         this.user = user;
     }
 
