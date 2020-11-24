@@ -2,10 +2,7 @@ package s4.carauction.models;
 
 import lombok.Data;
 import s4.carauction.entities.Car;
-import s4.carauction.entities.Image;
 import s4.carauction.entities.User;
-
-import javax.persistence.*;
 import java.util.Date;
 import java.util.List;
 
@@ -16,7 +13,7 @@ public class AuctionCreateModel {
     private String description;
     private Date startDate;
     private Date endDate;
-    private List<Image> images;
+    private String image;
     private Car car;
     private List<User> bidders;
     private User user;

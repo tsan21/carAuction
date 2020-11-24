@@ -19,8 +19,7 @@ public class Auction {
     private String description;
     private Date startDate;
     private Date endDate;
-    @OneToMany(mappedBy = "auction")
-    private List<Image> images;
+    private String image;
     @OneToOne(cascade = CascadeType.ALL)
     @JoinColumn(name = "car_Id")
     private Car car;
@@ -35,32 +34,32 @@ public class Auction {
     public Auction() {
     }
 
-    public Auction(String seller, String description, Date startDate, Date endDate, List<Image> images, Car car, List<User> bidders, User user) {
+    public Auction(String seller, String description, Date startDate, Date endDate, String images, Car car, List<User> bidders, User user) {
         this.seller = seller;
         this.description = description;
         this.startDate = startDate;
         this.endDate = endDate;
-        this.images = images;
+        this.image = image;
         this.car = car;
         this.bidders = bidders;
         this.user = user;
     }
 
-    public Auction(String seller, String description, Date startDate, Date endDate, List<Image> images, Car car, User user) {
+    public Auction(String seller, String description, Date endDate, String image, Car car, User user) {
         this.seller = seller;
         this.description = description;
-        this.startDate = startDate;
+        this.startDate = new Date();
         this.endDate = endDate;
-        this.images = images;
+        this.image = image;
         this.car = car;
         this.user = user;
     }
 
-    public Auction(String seller, String description, Date startDate, Date endDate, List<Image> images) {
+    public Auction(String seller, String description, Date startDate, Date endDate, String image) {
         this.seller = seller;
         this.description = description;
         this.startDate = startDate;
         this.endDate = endDate;
-        this.images = images;
+        this.image = image;
     }
 }

@@ -6,10 +6,8 @@ import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 import s4.carauction.entities.Auction;
 import s4.carauction.entities.Car;
-import s4.carauction.entities.Image;
 import s4.carauction.entities.User;
 import s4.carauction.models.AuctionCreateModel;
-import s4.carauction.models.UserModel;
 import s4.carauction.repos.AuctionRepo;
 
 import java.util.List;
@@ -25,11 +23,10 @@ public class AuctionController {
     @PostMapping("/")
     public ResponseEntity<?> create(@RequestBody AuctionCreateModel acm){
         if (acm != null){
-            List<Image> images = acm.getImages();
             Car car = acm.getCar();
             User user = acm.getUser();
 
-            Auction auction = new Auction(acm.getSeller(), acm.getDescription(), acm.getStartDate(), acm.getEndDate(), images, car, user);
+            Auction auction = new Auction(acm.getSeller(), acm.getDescription(), acm.getEndDate(), acm.getImage(), car, user);
             auctionRepo.save(auction);
             return new ResponseEntity<Error>(HttpStatus.CREATED);
         }
