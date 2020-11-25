@@ -16,21 +16,15 @@ import s4.carauction.services.UserService;
 
 public class RegistrationController {
     @Autowired
-    private UserRepo userRepo;
-    private UserService userService = new UserService();
+    private UserService userService;
 
     @PostMapping("/")
     public ResponseEntity<?> register(@RequestBody UserModel userModel){
-        if (userService.validateRegister(userRepo.findAll(), userModel.getName(), userModel.getPassword())){
-            User user = new User(userModel.getName(), userModel.getPassword());
-            userRepo.save(user);
-            return new ResponseEntity<>(user, HttpStatus.CREATED);
-        }
-        return new ResponseEntity<Error>(HttpStatus.NO_CONTENT);
+       return userService.register(userModel);
     }
 
     @GetMapping("/")
     public Iterable<User> all(){
-        return userRepo.findAll();
+        return userService.all();
     }
 }

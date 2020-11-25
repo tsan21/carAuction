@@ -1,5 +1,7 @@
 package s4.carauction.entities;
 
+import com.fasterxml.jackson.annotation.JsonBackReference;
+import com.fasterxml.jackson.annotation.JsonManagedReference;
 import lombok.Getter;
 import lombok.Setter;
 
@@ -17,16 +19,16 @@ public class Auction {
     private Long auctionId;
     private String seller;
     private String description;
-    private Date startDate;
-    private Date endDate;
+    private String startDate;
+    private String endDate;
     private String image;
     @OneToOne(cascade = CascadeType.ALL)
     @JoinColumn(name = "car_Id")
     private Car car;
     @ManyToMany(mappedBy = "bidAuctions")
     private List<User> bidders;
+    @JsonBackReference
     @ManyToOne
-    @JoinColumn(name = "userId", nullable = false)
     private User user;
 
 
@@ -34,7 +36,7 @@ public class Auction {
     public Auction() {
     }
 
-    public Auction(String seller, String description, Date startDate, Date endDate, String images, Car car, List<User> bidders, User user) {
+    public Auction(String seller, String description, String startDate, String endDate, String image, Car car, List<User> bidders) {
         this.seller = seller;
         this.description = description;
         this.startDate = startDate;
@@ -42,20 +44,19 @@ public class Auction {
         this.image = image;
         this.car = car;
         this.bidders = bidders;
-        this.user = user;
     }
 
-    public Auction(String seller, String description, Date endDate, String image, Car car, User user) {
+    public Auction(String seller, String description,String startDate, String endDate, String image, Car car, User user) {
         this.seller = seller;
         this.description = description;
-        this.startDate = new Date();
+        this.startDate = startDate;
         this.endDate = endDate;
         this.image = image;
         this.car = car;
         this.user = user;
     }
 
-    public Auction(String seller, String description, Date startDate, Date endDate, String image) {
+    public Auction(String seller, String description, String startDate, String endDate, String image) {
         this.seller = seller;
         this.description = description;
         this.startDate = startDate;

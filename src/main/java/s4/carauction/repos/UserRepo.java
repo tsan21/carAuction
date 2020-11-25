@@ -6,4 +6,5 @@ import s4.carauction.entities.User;
 
 @Repository
 public interface UserRepo extends JpaRepository<User, Long> {
+    User findByUserId(Long userId);
 }

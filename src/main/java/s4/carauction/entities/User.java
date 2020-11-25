@@ -1,8 +1,12 @@
 package s4.carauction.entities;
 
+import com.fasterxml.jackson.annotation.JsonBackReference;
+import com.fasterxml.jackson.annotation.JsonManagedReference;
 import com.sun.istack.Nullable;
 import lombok.Getter;
 import lombok.Setter;
+import org.hibernate.annotations.LazyCollection;
+import org.hibernate.annotations.LazyCollectionOption;
 
 import javax.persistence.*;
 import java.util.List;
@@ -17,7 +21,9 @@ public class User {
     private Long userId;
     private String name;
     private String password;
-    @OneToMany(mappedBy = "user")
+    @JsonManagedReference
+    @LazyCollection(LazyCollectionOption.FALSE)
+    @OneToMany(cascade = CascadeType.PERSIST, mappedBy = "user")
     private List<Auction> myAuctions;
     @ManyToMany
     @JoinTable(
@@ -36,10 +42,9 @@ public class User {
         this.password = password;
     }
 
-    public User(String name, String password, List<Auction> myAuctions, List<Auction> bidAuctions) {
+    public User(String name, String password, List<Auction> myAuctions) {
         this.name = name;
         this.password = password;
         this.myAuctions = myAuctions;
-        this.bidAuctions = bidAuctions;
     }
 }

@@ -11,10 +11,9 @@ public class AuctionCreateModel {
     private Long auctionId;
     private String seller;
     private String description;
-    private Date startDate;
-    private Date endDate;
+    private String startDate;
+    private String endDate;
     private String image;
-    private Car car;
-    private List<User> bidders;
-    private User user;
+    private CarCreateModel car;
+    private Long userId;
 }

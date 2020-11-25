@@ -9,6 +9,9 @@ import s4.carauction.entities.Car;
 import s4.carauction.entities.User;
 import s4.carauction.models.AuctionCreateModel;
 import s4.carauction.repos.AuctionRepo;
+import s4.carauction.services.AuctionService;
+import s4.carauction.services.CarService;
+import s4.carauction.services.UserService;
 
 import java.util.List;
 
@@ -18,18 +21,24 @@ import java.util.List;
 
 public class AuctionController {
     @Autowired
-    private AuctionRepo auctionRepo;
+    private AuctionService auctionService;
+
+    @Autowired
+    private UserService userService;
+
+    @Autowired
+    private CarService carService;
 
     @PostMapping("/")
     public ResponseEntity<?> create(@RequestBody AuctionCreateModel acm){
-        if (acm != null){
-            Car car = acm.getCar();
-            User user = acm.getUser();
+        System.out.println(acm.getEndDate());
+        User u = userService.findByUserId(acm.getUserId());
+        Car c = carService.create(acm.getCar());
+        return auctionService.create(acm, u, c);
+    }
 
-            Auction auction = new Auction(acm.getSeller(), acm.getDescription(), acm.getEndDate(), acm.getImage(), car, user);
-            auctionRepo.save(auction);
-            return new ResponseEntity<Error>(HttpStatus.CREATED);
-        }
-        return new ResponseEntity<Error>(HttpStatus.NO_CONTENT);
+    @GetMapping("/")
+    public Iterable<Auction> all(){
+        return auctionService.all();
     }
 }

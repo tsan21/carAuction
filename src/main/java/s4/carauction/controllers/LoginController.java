@@ -7,6 +7,7 @@ import org.springframework.web.bind.annotation.*;
 import s4.carauction.entities.User;
 import s4.carauction.models.UserModel;
 import s4.carauction.repos.UserRepo;
+import s4.carauction.services.UserService;
 
 @RestController
 @CrossOrigin(origins = "*", allowedHeaders = "*")
@@ -14,15 +15,16 @@ import s4.carauction.repos.UserRepo;
 
 public class LoginController {
     @Autowired
-    private UserRepo userRepo;
+    private UserService userService;
 
     @PostMapping("/")
     public ResponseEntity<?> login(@RequestBody UserModel userModel){
-        for (User u : userRepo.findAll()) {
-            if (u.getName().equals(userModel.getName()) && u.getPassword().equals(userModel.getPassword())){
-                return new ResponseEntity<>(u, HttpStatus.OK);
-            }
-        }
-        return new ResponseEntity<Error>(HttpStatus.NO_CONTENT);
+        return userService.login(userModel);
     }
+
+    @GetMapping("/{userId}")
+    public User findByUserId(@PathVariable("userId") Long userId){
+        return userService.findByUserId(userId);
+    }
+
 }
