@@ -7,7 +7,6 @@ import org.springframework.stereotype.Service;
 import s4.carauction.entities.User;
 import s4.carauction.models.UserModel;
 import s4.carauction.repos.UserRepo;
-
 import java.util.List;
 
 @Service
@@ -16,12 +15,14 @@ public class UserService {
     private UserRepo userRepo;
 
     public ResponseEntity<?> register(UserModel userModel){
-        if (!userExists(userRepo.findAll(), userModel.getName()) || !userModel.getName().equals("") || !userModel.getPassword().equals("")) {
-            User user = new User(userModel.getName(), userModel.getPassword());
-            userRepo.save(user);
-            return new ResponseEntity<>(user, HttpStatus.CREATED);
+        for (User u : userRepo.findAll()) {
+            if (u.getName().equals(userModel.getName()) || userModel.getName().equals("") || userModel.getPassword().equals("")){
+                return new ResponseEntity<Error>(HttpStatus.NO_CONTENT);
+            }
         }
-        return new ResponseEntity<Error>(HttpStatus.NO_CONTENT);
+        User user = new User(userModel.getName(), userModel.getPassword());
+        userRepo.save(user);
+        return new ResponseEntity<>(user, HttpStatus.CREATED);
     }
 
     public Iterable<User> all(){
@@ -29,24 +30,14 @@ public class UserService {
     }
 
     public ResponseEntity<?> login(UserModel userModel){
-        for (User u : userRepo.findAll()) {
-            if (u.getName().equals(userModel.getName()) && u.getPassword().equals(userModel.getPassword())){
-                return new ResponseEntity<>(u, HttpStatus.OK);
-            }
+        User u = userRepo.findByNameAndPassword(userModel.getName(), userModel.getPassword());
+        if (u==null){
+            return new ResponseEntity<Error>(HttpStatus.NO_CONTENT);
         }
-        return new ResponseEntity<Error>(HttpStatus.NO_CONTENT);
+        return new ResponseEntity<>(u, HttpStatus.OK);
     }
 
     public User findByUserId(Long userId){
         return userRepo.findByUserId(userId);
-    }
-
-    public boolean userExists(List<User> users, String userName){
-        for (User user : users){
-            if (user.getName().equals(userName)){
-                return true;
-            }
-        }
-        return false;
     }
 }

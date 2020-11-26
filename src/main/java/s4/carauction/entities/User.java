@@ -19,6 +19,7 @@ public class User {
     @Id
     @GeneratedValue
     private Long userId;
+//    @Column(unique = true)
     private String name;
     private String password;
     @JsonManagedReference
