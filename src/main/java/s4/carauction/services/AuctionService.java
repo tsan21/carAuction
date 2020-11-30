@@ -27,4 +27,8 @@ public class AuctionService {
     public Iterable<Auction> all(){
         return auctionRepo.findAll();
     }
+
+    public Iterable<Auction> getMyAuctions(Long userId){
+        return auctionRepo.findByUser_userId(userId);
+    }
 }

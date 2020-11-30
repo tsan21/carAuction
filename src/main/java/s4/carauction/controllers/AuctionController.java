@@ -41,4 +41,9 @@ public class AuctionController {
     public Iterable<Auction> all(){
         return auctionService.all();
     }
+
+    @GetMapping("/{userId}")
+    public Iterable<Auction> myAuctions(@PathVariable("userId") Long userId){
+        return auctionService.getMyAuctions(userId);
+    }
 }

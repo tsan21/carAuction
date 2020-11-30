@@ -6,4 +6,5 @@ import s4.carauction.entities.Auction;
 
 @Repository
 public interface AuctionRepo extends JpaRepository<Auction, Long> {
+    Iterable<Auction> findByUser_userId(Long userId);
 }
