@@ -1,10 +1,6 @@
 package s4.carauction.models;
 
 import lombok.Data;
-import s4.carauction.entities.Car;
-import s4.carauction.entities.User;
-import java.util.Date;
-import java.util.List;
 
 @Data
 public class AuctionCreateModel {

@@ -31,7 +31,6 @@ public class AuctionController {
 
     @PostMapping("/")
     public ResponseEntity<?> create(@RequestBody AuctionCreateModel acm){
-        System.out.println(acm.getEndDate());
         User u = userService.findByUserId(acm.getUserId());
         Car c = carService.create(acm.getCar());
         return auctionService.create(acm, u, c);
