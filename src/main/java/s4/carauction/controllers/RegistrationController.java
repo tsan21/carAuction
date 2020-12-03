@@ -2,12 +2,10 @@ package s4.carauction.controllers;
 
 
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 import s4.carauction.entities.User;
 import s4.carauction.models.UserModel;
-import s4.carauction.repos.UserRepo;
 import s4.carauction.services.UserService;
 
 @RestController

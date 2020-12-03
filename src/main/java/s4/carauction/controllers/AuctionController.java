@@ -1,19 +1,16 @@
 package s4.carauction.controllers;
 
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 import s4.carauction.entities.Auction;
 import s4.carauction.entities.Car;
 import s4.carauction.entities.User;
 import s4.carauction.models.AuctionCreateModel;
-import s4.carauction.repos.AuctionRepo;
 import s4.carauction.services.AuctionService;
 import s4.carauction.services.CarService;
 import s4.carauction.services.UserService;
 
-import java.util.List;
 
 @RestController
 @CrossOrigin(origins = "*", allowedHeaders = "*")

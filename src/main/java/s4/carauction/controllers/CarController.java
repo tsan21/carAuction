@@ -6,7 +6,6 @@ import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 import s4.carauction.entities.Car;
 import s4.carauction.models.CarCreateModel;
-import s4.carauction.repos.CarRepo;
 import s4.carauction.services.CarService;
 
 @RestController

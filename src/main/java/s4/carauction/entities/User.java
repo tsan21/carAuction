@@ -1,8 +1,6 @@
 package s4.carauction.entities;
 
-import com.fasterxml.jackson.annotation.JsonBackReference;
 import com.fasterxml.jackson.annotation.JsonManagedReference;
-import com.sun.istack.Nullable;
 import lombok.Getter;
 import lombok.Setter;
 import org.hibernate.annotations.LazyCollection;
@@ -19,7 +17,6 @@ public class User {
     @Id
     @GeneratedValue
     private Long userId;
-//    @Column(unique = true)
     private String name;
     private String password;
     @JsonManagedReference
