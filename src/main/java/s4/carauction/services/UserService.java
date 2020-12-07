@@ -11,8 +11,13 @@ import s4.carauction.repos.UserRepo;
 
 @Service
 public class UserService {
-    @Autowired
+
     private UserRepo userRepo;
+
+    @Autowired
+    public UserService(UserRepo userRepo) {
+        this.userRepo = userRepo;
+    }
 
     public ResponseEntity<?> register(UserModel userModel){
         for (User u : userRepo.findAll()) {

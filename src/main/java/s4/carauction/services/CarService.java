@@ -9,8 +9,12 @@ import s4.carauction.repos.CarRepo;
 @Service
 public class CarService {
 
-    @Autowired
     private CarRepo carRepo;
+
+    @Autowired
+    public CarService(CarRepo carRepo) {
+        this.carRepo = carRepo;
+    }
 
     public Car create(CarCreateModel ccm){
         Car car = new Car(ccm.getBrand(), ccm.getModel(), ccm.getBodyStyle(), ccm.getColor(), ccm.getEngine(), ccm.getMileage(), ccm.getProductionYear());

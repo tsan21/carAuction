@@ -16,14 +16,17 @@ import s4.carauction.services.UserService;
 @RequestMapping(value="/auction")
 
 public class AuctionController {
-    @Autowired
+
     private AuctionService auctionService;
-
-    @Autowired
     private UserService userService;
+    private CarService carService;
 
     @Autowired
-    private CarService carService;
+    public AuctionController(AuctionService auctionService, UserService userService, CarService carService) {
+        this.auctionService = auctionService;
+        this.userService = userService;
+        this.carService = carService;
+    }
 
     @PostMapping("/")
     public ResponseEntity<?> create(@RequestBody AuctionCreateModel acm){

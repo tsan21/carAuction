@@ -12,8 +12,13 @@ import s4.carauction.services.UserService;
 @RequestMapping(value="/register")
 
 public class RegistrationController {
-    @Autowired
+
     private UserService userService;
+
+    @Autowired
+    public RegistrationController(UserService userService) {
+        this.userService = userService;
+    }
 
     @PostMapping("/")
     public ResponseEntity<?> register(@RequestBody UserModel userModel){

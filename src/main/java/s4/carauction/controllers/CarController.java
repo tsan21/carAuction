@@ -13,8 +13,13 @@ import s4.carauction.services.CarService;
 @RequestMapping(value="/car")
 
 public class CarController {
-    @Autowired
+
     private CarService carService;
+
+    @Autowired
+    public CarController(CarService carService) {
+        this.carService = carService;
+    }
 
     @PostMapping("/")
     public ResponseEntity<?> create(@RequestBody CarCreateModel ccm){

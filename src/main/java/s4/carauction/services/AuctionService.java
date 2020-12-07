@@ -12,8 +12,13 @@ import s4.carauction.repos.AuctionRepo;
 
 @Service
 public class AuctionService {
-    @Autowired
+
     private AuctionRepo auctionRepo;
+
+    @Autowired
+    public AuctionService(AuctionRepo auctionRepo) {
+        this.auctionRepo = auctionRepo;
+    }
 
     public ResponseEntity<?> create(AuctionCreateModel acm, User user, Car car){
         if (acm != null){
