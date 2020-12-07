@@ -1,9 +1,6 @@
 package s4.carauction.models;
 
 import lombok.Data;
-import s4.carauction.entities.Auction;
-
-import javax.persistence.OneToOne;
 
 @Data
 public class CarCreateModel {

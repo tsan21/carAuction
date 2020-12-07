@@ -7,7 +7,8 @@ import org.springframework.stereotype.Service;
 import s4.carauction.entities.User;
 import s4.carauction.models.UserModel;
 import s4.carauction.repos.UserRepo;
-import java.util.List;
+
+
 @Service
 public class UserService {
     @Autowired

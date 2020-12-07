@@ -11,7 +11,6 @@ import s4.carauction.services.AuctionService;
 import s4.carauction.services.CarService;
 import s4.carauction.services.UserService;
 
-
 @RestController
 @CrossOrigin(origins = "*", allowedHeaders = "*")
 @RequestMapping(value="/auction")
