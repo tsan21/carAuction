@@ -27,12 +27,17 @@ public class BidService {
         Bid bid = new Bid(bidPlaceModel.getBidder(), bidPlaceModel.getAmount(), auction);
         auction.getBids().add(bid);
 
-        auctionRepo.save(auction);
         bidRepo.save(bid);
         return new ResponseEntity<>(bid, HttpStatus.CREATED);
     }
 
     public Iterable<Bid> all(){
         return bidRepo.findAll();
+    }
+
+    public void test(){
+        for (Bid bid : bidRepo.findAll()) {
+            System.out.println(bid.getBidder());
+        }
     }
 }

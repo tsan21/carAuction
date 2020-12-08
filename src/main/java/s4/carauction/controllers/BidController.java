@@ -30,4 +30,9 @@ public class BidController {
     public Iterable<Bid> all(){
         return bidService.all();
     }
+
+    @GetMapping("/test")
+    public void test2(){
+        bidService.test();
+    }
 }
