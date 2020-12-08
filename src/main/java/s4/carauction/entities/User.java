@@ -23,12 +23,9 @@ public class User {
     @LazyCollection(LazyCollectionOption.FALSE)
     @OneToMany(cascade = CascadeType.PERSIST, mappedBy = "user")
     private List<Auction> myAuctions;
-    @ManyToMany
-    @JoinTable(
-            name = "bid",
-            joinColumns = @JoinColumn(name = "userId"),
-            inverseJoinColumns = @JoinColumn(name = "auctionId"))
-    private List<Auction> bidAuctions;
+    @OneToMany(cascade = CascadeType.ALL, orphanRemoval = true)
+    @JoinColumn(name = "user_Id")
+    private List<Bid> myBids;
 
 
 
@@ -44,5 +41,12 @@ public class User {
         this.name = name;
         this.password = password;
         this.myAuctions = myAuctions;
+    }
+
+    public User(String name, String password, List<Auction> myAuctions, List<Bid> myBids) {
+        this.name = name;
+        this.password = password;
+        this.myAuctions = myAuctions;
+        this.myBids = myBids;
     }
 }

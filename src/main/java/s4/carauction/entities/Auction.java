@@ -22,8 +22,9 @@ public class Auction {
     @OneToOne(cascade = CascadeType.ALL)
     @JoinColumn(name = "car_Id")
     private Car car;
-    @ManyToMany(mappedBy = "bidAuctions")
-    private List<User> bidders;
+    @OneToMany(cascade = CascadeType.ALL, orphanRemoval = true)
+    @JoinColumn(name = "auction_Id")
+    private List<Bid> bids;
     @JsonBackReference
     @ManyToOne
     private User user;
@@ -33,14 +34,14 @@ public class Auction {
     public Auction() {
     }
 
-    public Auction(String seller, String description, String startDate, String endDate, String image, Car car, List<User> bidders) {
+    public Auction(String seller, String description, String startDate, String endDate, String image, Car car, List<Bid> bids) {
         this.seller = seller;
         this.description = description;
         this.startDate = startDate;
         this.endDate = endDate;
         this.image = image;
         this.car = car;
-        this.bidders = bidders;
+        this.bids = bids;
     }
 
     public Auction(String seller, String description,String startDate, String endDate, String image, Car car, User user) {
