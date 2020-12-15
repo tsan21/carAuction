@@ -1,6 +1,7 @@
 package s4.carauction.services;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.boot.autoconfigure.condition.ConditionalOnMissingClass;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Service;
@@ -9,6 +10,7 @@ import s4.carauction.entities.Car;
 import s4.carauction.entities.User;
 import s4.carauction.models.AuctionCreateModel;
 import s4.carauction.repos.AuctionRepo;
+
 
 @Service
 public class AuctionService {
@@ -35,5 +37,12 @@ public class AuctionService {
 
     public Iterable<Auction> getMyAuctions(Long userId){
         return auctionRepo.findByUser_userId(userId);
+    }
+
+    public ResponseEntity<?> delete(Long auctionId){
+        Auction auction = auctionRepo.findByAuctionId(auctionId);
+        auctionRepo.delete(auction);
+
+        return new ResponseEntity<>(HttpStatus.OK);
     }
 }

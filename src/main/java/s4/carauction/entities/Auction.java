@@ -19,7 +19,7 @@ public class Auction {
     private String startDate;
     private String endDate;
     private String image;
-    @OneToOne(cascade = CascadeType.ALL)
+    @OneToOne(cascade = CascadeType.ALL, orphanRemoval = true)
     @JoinColumn(name = "car_Id")
     private Car car;
     @OneToMany(cascade = CascadeType.ALL, orphanRemoval = true)

@@ -1,5 +1,7 @@
 package s4.carauction.entities;
 
+import com.fasterxml.jackson.annotation.JsonBackReference;
+import com.fasterxml.jackson.annotation.JsonManagedReference;
 import lombok.Getter;
 import lombok.Setter;
 
@@ -19,7 +21,8 @@ public class Car {
     private String engine;
     private int mileage;
     private int productionYear;
-//    @OneToOne(mappedBy = "car")
+//    @JsonBackReference
+//    @OneToOne
 //    private Auction auction;
 
 

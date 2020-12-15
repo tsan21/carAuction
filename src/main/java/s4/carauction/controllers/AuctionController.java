@@ -44,4 +44,9 @@ public class AuctionController {
     public Iterable<Auction> myAuctions(@PathVariable("userId") Long userId){
         return auctionService.getMyAuctions(userId);
     }
+
+    @DeleteMapping("/{auctionId}")
+    public ResponseEntity<?> delete(@PathVariable("auctionId") Long auctionId){
+        return auctionService.delete(auctionId);
+    }
 }
