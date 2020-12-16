@@ -7,6 +7,7 @@ import s4.carauction.entities.Auction;
 import s4.carauction.entities.Car;
 import s4.carauction.entities.User;
 import s4.carauction.models.AuctionCreateModel;
+import s4.carauction.models.AuctionEditModel;
 import s4.carauction.services.AuctionService;
 import s4.carauction.services.CarService;
 import s4.carauction.services.UserService;
@@ -49,4 +50,10 @@ public class AuctionController {
     public ResponseEntity<?> delete(@PathVariable("auctionId") Long auctionId){
         return auctionService.delete(auctionId);
     }
+
+    @PutMapping("/")
+    public ResponseEntity<?> edit(@RequestBody AuctionEditModel aem){
+        return auctionService.edit(aem);
+    }
+
 }
