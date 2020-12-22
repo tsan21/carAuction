@@ -40,8 +40,7 @@ public class AuctionService {
     }
 
     public ResponseEntity<?> delete(Long auctionId){
-        Auction auction = auctionRepo.findByAuctionId(auctionId);
-        auctionRepo.delete(auction);
+        auctionRepo.deleteByAuctionId(auctionId);
 
         return new ResponseEntity<>(HttpStatus.OK);
     }
