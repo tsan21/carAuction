@@ -57,7 +57,7 @@
 				<groupId>org.springframework.boot</groupId>
 				<artifactId>spring-boot-maven-plugin</artifactId>
 					<configuration>
-						<mainClass>s4.carauction.CarauctionApplication.java</mainClass>
+						<mainClass>s4.carauction.CarauctionApplication</mainClass>
 					</configuration>
 			</plugin>
 			<plugin>
