@@ -38,4 +38,4 @@ jobs:
           echo 'Maven Test'
           mvn test
           echo 'Jobs done'
-          mvn clean verify sonar:sonar
+          mvn clean install sonar:sonar -Dsonar.host.url=http://localhost:9000
