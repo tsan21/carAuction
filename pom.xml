@@ -16,6 +16,7 @@
 
 	<properties>
 		<java.version>11</java.version>
+		<sonar.organization>default</sonar.organization>
 	</properties>
 
 	<dependencies>
