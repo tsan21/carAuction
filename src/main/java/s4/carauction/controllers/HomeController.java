@@ -7,10 +7,10 @@ import org.springframework.web.bind.annotation.RestController;
 @RestController
 @CrossOrigin(origins = "*", allowedHeaders = "*")
 
-public class TestController {
+public class HomeController {
 
     @RequestMapping("/")
-    public String test(){
+    public String home(){
         return "this is my car auction";
     }
 }
